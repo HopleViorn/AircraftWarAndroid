@@ -23,14 +23,7 @@ public class MySurfaceView extends SurfaceView implements
     private Canvas canvas;  //绘图的画布
     private Paint mPaint;
 
-
-    public MySurfaceView(Context context) {
-        super(context);
-        mbLoop = true;
-        mPaint = new Paint();  //设置画笔
-        mSurfaceHolder = this.getHolder();
-        mSurfaceHolder.addCallback(this);
-        this.setFocusable(true);
+    public void loadImage() {
         ImageManager.BACKGROUND_IMAGE = BitmapFactory.decodeResource(getResources(), R.drawable.bg);
 
         ImageManager.BACKGROUND_IMAGE2 = BitmapFactory.decodeResource(getResources(), R.drawable.bg2);
@@ -50,6 +43,16 @@ public class MySurfaceView extends SurfaceView implements
         ImageManager.PROP_BOMB_IMAGE=BitmapFactory.decodeResource(getResources(), R.drawable.prop_bomb);
         ImageManager.PROP_BULLET_IMAGE=BitmapFactory.decodeResource(getResources(), R.drawable.prop_bullet);
         ImageManager.updateMap();
+    }
+
+    public MySurfaceView(Context context) {
+        super(context);
+        mbLoop = true;
+        mPaint = new Paint();  //设置画笔
+        mSurfaceHolder = this.getHolder();
+        mSurfaceHolder.addCallback(this);
+        this.setFocusable(true);
+        loadImage();
     }
     public void draw(){
         //通过SurfaceHolder对象的lockCanvans()方法，我们可以获取当前的Canvas绘图对象
