@@ -35,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
         screenWidth=displayMetrics.widthPixels;
         screenHeight=displayMetrics.heightPixels;
     }
-
+    
+    
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {

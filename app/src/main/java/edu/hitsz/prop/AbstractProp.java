@@ -1,6 +1,6 @@
 package edu.hitsz.prop;
 
-import edu.hitsz.application.Main;
+import edu.hitsz.application.MainActivity;
 import edu.hitsz.basic.AbstractFlyingObject;
 
 public class AbstractProp extends AbstractFlyingObject {
@@ -12,12 +12,12 @@ public class AbstractProp extends AbstractFlyingObject {
         super.forward(timeInterval);
 
         // 判定 x 轴出界
-        if (locationX <= 0 || locationX >= Main.WINDOW_WIDTH) {
+        if (locationX <= 0 || locationX >= MainActivity.screenWidth) {
             vanish();
         }
 
         // 判定 y 轴出界
-        if (speedY > 0 && locationY >= Main.WINDOW_HEIGHT ) {
+        if (speedY > 0 && locationY >= MainActivity.screenHeight) {
             // 向下飞行出界
             vanish();
         }else if (locationY <= 0){

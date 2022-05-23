@@ -1,14 +1,10 @@
 package edu.hitsz.aircraft;
 
-import edu.hitsz.application.Main;
+import edu.hitsz.application.MainActivity;
 import edu.hitsz.bullet.BaseBullet;
-import edu.hitsz.bullet.EnemyBullet;
-import edu.hitsz.bus.MeEvent;
-import edu.hitsz.bus.Subscriber;
 import edu.hitsz.strategy.FireStrategy;
 import edu.hitsz.strategy.Single;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import static edu.hitsz.bullet.BulletType.ENEMY;
@@ -25,7 +21,7 @@ public class Elite extends AbstractAircraft{
     public void forward(double timeInterval) {
         super.forward(timeInterval);
         // 判定 y 轴向下飞行出界
-        if (locationY >= Main.WINDOW_HEIGHT ) {
+        if (locationY >= MainActivity.screenHeight) {
             vanish();
         }
     }

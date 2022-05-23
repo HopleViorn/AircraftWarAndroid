@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
 
-import static edu.hitsz.application.Main.userDao;
+import static edu.hitsz.application.MainActivity.userDao;
 
 public class UserDaoImpl implements UserDao, Serializable {
     private List<User> userList;

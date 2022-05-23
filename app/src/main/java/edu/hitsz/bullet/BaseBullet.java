@@ -1,6 +1,7 @@
 package edu.hitsz.bullet;
 
-import edu.hitsz.application.Main;
+
+import edu.hitsz.application.MainActivity;
 import edu.hitsz.basic.AbstractFlyingObject;
 import edu.hitsz.bus.MeEvent;
 import edu.hitsz.bus.Subscriber;
@@ -25,12 +26,12 @@ public class BaseBullet extends AbstractFlyingObject implements Subscriber {
         super.forward(timeInterval);
 
         // 判定 x 轴出界
-        if (locationX <= 0 || locationX >= Main.WINDOW_WIDTH) {
+        if (locationX <= 0 || locationX >= MainActivity.screenWidth) {
             vanish();
         }
 
         // 判定 y 轴出界
-        if (speedY > 0 && locationY >= Main.WINDOW_HEIGHT ) {
+        if (speedY > 0 && locationY >= MainActivity.screenHeight) {
             // 向下飞行出界
             vanish();
         }else if (locationY <= 0){

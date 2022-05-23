@@ -1,6 +1,6 @@
 package edu.hitsz.aircraft;
 
-import edu.hitsz.application.Main;
+import edu.hitsz.application.MainActivity;
 import edu.hitsz.bullet.BaseBullet;
 
 import java.util.LinkedList;
@@ -22,7 +22,7 @@ public class MobEnemy extends AbstractAircraft {
     public void forward(double timeInterval) {
         super.forward(timeInterval);
         // 判定 y 轴向下飞行出界
-        if (locationY >= Main.WINDOW_HEIGHT ) {
+        if (locationY >= MainActivity.screenHeight) {
             vanish();
         }
     }

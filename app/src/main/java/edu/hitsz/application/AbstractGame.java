@@ -90,7 +90,7 @@ public abstract class AbstractGame extends MySurfaceView {
         executorService = new ScheduledThreadPoolExecutor(2);
 
         //启动英雄机鼠标监听
-        new HeroController(this, heroAircraft);
+//        new HeroController(this, heroAircraft);
 
     }
 
@@ -367,10 +367,10 @@ public abstract class AbstractGame extends MySurfaceView {
 //            case Hard:bufferedImage=ImageManager.BACKGROUND_IMAGE3;break;
 //            default:bufferedImage=ImageManager.BACKGROUND_IMAGE4;break;
 //        }
-//        g.drawImage(bufferedImage, 0, (int) (this.backGroundTop - Main.WINDOW_HEIGHT), null);
+//        g.drawImage(bufferedImage, 0, (int) (this.backGroundTop - MainActivity.screenHeight), null);
 //        g.drawImage(bufferedImage, 0, (int) this.backGroundTop, null);
 //        this.backGroundTop += 1.0 * timeInterval/40;
-//        if (this.backGroundTop == Main.WINDOW_HEIGHT) {
+//        if (this.backGroundTop == MainActivity.screenHeight) {
 //            this.backGroundTop = 0;
 //        }
 //
