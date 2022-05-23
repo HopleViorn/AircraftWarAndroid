@@ -3,6 +3,7 @@ package edu.hitsz.application;
 import edu.hitsz.aircraft.*;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 
 import edu.hitsz.basic.AbstractFlyingObject;
 import edu.hitsz.bullet.BaseBullet;
@@ -18,6 +19,7 @@ import edu.hitsz.user.UserDaoImpl;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -97,8 +99,9 @@ public abstract class AbstractGame extends MySurfaceView {
     /**
      * 游戏启动入口，执行游戏逻辑
      */
-    public void action() {
-        userDao.readFromFile();
+    @Override
+    public void run() {
+        //userDao.readFromFile();
 
         // 定时任务：绘制、对象产生、碰撞判定、击毁及结束判定
       //  MusicThread musicPlay=new MusicThread("src/videos/bgm.wav",true);
@@ -351,22 +354,37 @@ public abstract class AbstractGame extends MySurfaceView {
      * 重写paint方法
      * 通过重复调用paint方法，实现游戏动画
      *
-     * @param  g
+     * @param
      */
 
+    @Override
+    public void draw(){
+        canvas = mSurfaceHolder.lockCanvas();
+        if(mSurfaceHolder == null || canvas == null){
+            return;
+        }
+        Bitmap bufferedImage=null;
+
+        switch(Settings.difficulty){
+            case Casual:bufferedImage=ImageManager.BACKGROUND_IMAGE;break;
+            case Medium:bufferedImage=ImageManager.BACKGROUND_IMAGE2;break;
+            case Hard:bufferedImage=ImageManager.BACKGROUND_IMAGE3;break;
+            default:bufferedImage=ImageManager.BACKGROUND_IMAGE4;break;
+        }
+        canvas.drawBitmap(bufferedImage,0, (float) (this.backGroundTop-screenHeight),mPaint);
+        canvas.drawBitmap(bufferedImage,0, (float) (this.backGroundTop),mPaint);
+        backGroundTop+=1;
+        if(backGroundTop==screenHeight){
+            this.backGroundTop=0;
+        }
+        mSurfaceHolder.unlockCanvasAndPost(canvas);
+    }
 //    @Override
 //    public void paint(Graphics g) {
 //        super.paint(g);
 //
 //        // 绘制背景,图片滚动
-//        Bitmap bufferedImage=null;
 //
-//        switch(Settings.difficulty){
-//            case Casual:bufferedImage=ImageManager.BACKGROUND_IMAGE;break;
-//            case Medium:bufferedImage=ImageManager.BACKGROUND_IMAGE2;break;
-//            case Hard:bufferedImage=ImageManager.BACKGROUND_IMAGE3;break;
-//            default:bufferedImage=ImageManager.BACKGROUND_IMAGE4;break;
-//        }
 //        g.drawImage(bufferedImage, 0, (int) (this.backGroundTop - MainActivity.screenHeight), null);
 //        g.drawImage(bufferedImage, 0, (int) this.backGroundTop, null);
 //        this.backGroundTop += 1.0 * timeInterval/40;

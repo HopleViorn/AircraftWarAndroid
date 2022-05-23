@@ -7,7 +7,11 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
+
+import java.util.Set;
+
 import edu.hitsz.R;
+import edu.hitsz.application.game.CasualMode;
 import edu.hitsz.user.UserDao;
 import edu.hitsz.user.UserDaoImpl;
 
@@ -22,10 +26,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mySurfaceView = new MySurfaceView(this);
+        mySurfaceView = new CasualMode(this);
         getScreenHW();
         mySurfaceView.screenWidth=screenWidth;
         mySurfaceView.screenHeight=screenHeight;
+        Settings.difficulty= Settings.Difficulty.Casual;
         setContentView(mySurfaceView);
     }
 
